@@ -1,6 +1,6 @@
 
 # open the file - and read all of the lines.
-changes_file = 'changes_python.txt'
+changes_file = 'changes_python.log'
 # use strip to strip out spaces and trim the line.
 
 #my_file = open(changes_file, 'r')
@@ -57,21 +57,15 @@ print(len(commits))
 
 commits.reverse()
 
-
 for index, commit in enumerate(commits):
     print(commit.get_commit_comment())
-
-output_file = 'changes.csv'
-my_file = open(output_file, 'w')
-my_file.write('Revision,Author,Date,# Lines,Comment,Files Changed\n')
-for commit in commits:
-	my_file.write(str(commit.revision) + ',' +
-	commit.author + ',"' +
-	commit.date + '",' + 
-	str(commit.comment_line_count) + ',"' +
-	''.join(commit.comment) + '",' + 
-	' - '.join(commit.changes)+ '\n')
-
-my_file.close()
 	
-
+	
+output_file = 'changes.csv'
+my_file = open(output_file, 'w')	
+my_file.write('Revision, Author, Date # Lines, Comment, Files Changed \n')
+for commit in commits:
+   my_file.write(str(commit.revision) + '.' + commit.author + ',"' + commit.date + '",' + str(commit.comment_line_count) + ',"' + ''.join(commit.comment) + '",' + ' - '.join(commit.changes) + '\n')
+my_file.close()	
+	
+	
